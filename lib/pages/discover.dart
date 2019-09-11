@@ -1,4 +1,4 @@
-import 'package:bright_app/widgets/product_card.dart';
+import 'package:bright_app/widgets/product_view.dart';
 /**
  *
  * DiscoverPage
@@ -112,7 +112,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
               .map(
                 (brand) => ListView(
                   children: <Widget>[
-                    ProductCardWidget(),
+                    ProductViewWidget(),
                     Text('$brand'),
                   ],
                 ),

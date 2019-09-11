@@ -6,48 +6,60 @@ import 'package:bright_app/bright_app_icons.dart';
  */
 import 'package:flutter/material.dart';
 
-class ProductCardWidget extends StatefulWidget {
-  @override
-  _ProductCardWidgetState createState() => _ProductCardWidgetState();
+class Product {
+  final String title;
+  final String brand;
+  final double price;
+  final String image;
+  final MaterialColor color;
+  Product(this.title, this.brand, this.price, this.image, this.color);
 }
 
-class _ProductCardWidgetState extends State<ProductCardWidget> {
+class ProductCardWidget extends StatelessWidget {
+  final Product product;
+
+  const ProductCardWidget({Key key, this.product}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: Alignment.center,
-      child: Container(
-        width: 136,
-        height: 190,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.cyan,
-        ),
-        padding: EdgeInsets.all(8),
-        child: Stack(children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Text(
-                'Nike'.toUpperCase(),
-                style: TextStyle(color: Colors.white),
-              ),
-              Text(
-                'AIR-MAX',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w700,
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(8),
+        color: product.color,
+      ),
+      padding: EdgeInsets.all(8),
+      child: Stack(
+        overflow: Overflow.visible,
+        children: [
+          Container(
+            height: 60,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  product.brand,
+                  style: TextStyle(color: Colors.white),
                 ),
-              ),
-              Text(
-                '\$150.00',
-                style: TextStyle(color: Colors.white),
-              ),
-            ],
+                Text(
+                  product.title,
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+                Text(
+                  '\$${product.price.toStringAsFixed(2)}',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 12,
+                  ),
+                ),
+              ],
+            ),
           ),
           Positioned.fill(
-            top: -154,
-            right: -100,
+            top: -160,
+            right: -130,
             child: IconButton(
               splashColor: Colors.transparent,
               icon: Icon(
@@ -58,7 +70,31 @@ class _ProductCardWidgetState extends State<ProductCardWidget> {
               onPressed: () {},
             ),
           ),
-        ]),
+          Positioned.fill(
+            bottom: 10,
+            right: -20,
+            child: Transform.rotate(
+              child: Image.asset(
+                product.image,
+                fit: BoxFit.fitHeight,
+              ),
+              angle: -0.4,
+            ),
+          ),
+          Positioned.fill(
+            bottom: -160,
+            right: -120,
+            child: IconButton(
+              splashColor: Colors.transparent,
+              icon: Icon(
+                BrightApp.arrow_right,
+                color: Colors.white,
+                size: 18,
+              ),
+              onPressed: () {},
+            ),
+          ),
+        ],
       ),
     );
   }
