@@ -1,3 +1,4 @@
+import 'package:bright_app/widgets/product_card.dart';
 import 'package:bright_app/widgets/product_view.dart';
 /**
  *
@@ -113,7 +114,29 @@ class _DiscoverPageState extends State<DiscoverPage> {
                 (brand) => ListView(
                   children: <Widget>[
                     ProductViewWidget(),
-                    Text('$brand'),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(children: <Widget>[
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Text(
+                              'More',
+                              style: TextStyle(
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                            IconButton(
+                              icon: Icon(
+                                Icons.trending_flat,
+                                size: 18,
+                              ),
+                              onPressed: () {},
+                            )
+                          ],
+                        ),
+                      ]),
+                    )
                   ],
                 ),
               )

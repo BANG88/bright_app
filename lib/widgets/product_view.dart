@@ -6,6 +6,15 @@ import 'package:bright_app/widgets/product_card.dart';
  */
 import 'package:flutter/material.dart';
 
+List<Product> products = [
+  Product('AIR-MAX', 'NIKE', 130, 'assets/air-max-270.png', Colors.cyan),
+  Product(
+      'AIR-MAX', 'NIKE', 160, 'assets/air-max-270-react.png', Colors.blueGrey),
+  Product('AIR-MAX', 'NIKE', 140, 'assets/shox-bb4-qs.png', Colors.lime),
+  Product(
+      'AIR-MAX', 'NIKE', 150, 'assets/air-vapormax-flyknit-3.png', Colors.teal),
+];
+
 class ProductViewWidget extends StatefulWidget {
   @override
   _ProductViewWidgetState createState() => _ProductViewWidgetState();
@@ -13,14 +22,7 @@ class ProductViewWidget extends StatefulWidget {
 
 class _ProductViewWidgetState extends State<ProductViewWidget> {
   PageController _pageController;
-  List<Product> products = [
-    Product('AIR-MAX', 'NIKE', 130, 'assets/air-max-270.png', Colors.cyan),
-    Product('AIR-MAX', 'NIKE', 160, 'assets/air-max-270-react.png',
-        Colors.blueGrey),
-    Product('AIR-MAX', 'NIKE', 140, 'assets/shox-bb4-qs.png', Colors.lime),
-    Product('AIR-MAX', 'NIKE', 150, 'assets/air-vapormax-flyknit-3.png',
-        Colors.teal),
-  ];
+
   var currentPageValue = 0.0;
 
   @override
