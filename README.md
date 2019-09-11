@@ -2,7 +2,7 @@
 
 A new Flutter project.
 
-![Simulator Screen Shot - iPhone X - 2019-09-11 at 17 28 06](https://user-images.githubusercontent.com/433259/64685502-b3144880-d4b9-11e9-9b38-9dd8e0fd3981.png)
+![image](https://user-images.githubusercontent.com/433259/64685669-f2db3000-d4b9-11e9-9af3-1ad020b83286.png)
 
 
 ## Getting Started
