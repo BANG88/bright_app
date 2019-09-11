@@ -21,13 +21,17 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
     Product('AIR-MAX', 'NIKE', 150, 'assets/air-vapormax-flyknit-3.png',
         Colors.teal),
   ];
+  var currentPageValue = 0.0;
+
   @override
   void initState() {
     super.initState();
     _pageController = PageController(
       viewportFraction: 0.6,
-      keepPage: false,
     );
+    _pageController.addListener(() {
+      currentPageValue = _pageController.page;
+    });
   }
 
   @override
@@ -47,6 +51,7 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
       child: Stack(
         children: <Widget>[
           PageView.builder(
+            physics: BouncingScrollPhysics(),
             itemCount: products.length,
             controller: _pageController,
             itemBuilder: (BuildContext context, int index) {
@@ -56,6 +61,7 @@ class _ProductViewWidgetState extends State<ProductViewWidget> {
                   height: 220,
                   child: ProductCardWidget(
                     product: products[index],
+                    animate: currentPageValue.floor() == index,
                   ),
                 ),
               );

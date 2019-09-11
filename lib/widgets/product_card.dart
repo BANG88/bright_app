@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bright_app/bright_app_icons.dart';
 /**
  *
@@ -15,16 +17,38 @@ class Product {
   Product(this.title, this.brand, this.price, this.image, this.color);
 }
 
-class ProductCardWidget extends StatelessWidget {
+class ProductCardWidget extends StatefulWidget {
   final Product product;
+  final bool animate;
+  const ProductCardWidget({Key key, this.product, this.animate})
+      : super(key: key);
 
-  const ProductCardWidget({Key key, this.product}) : super(key: key);
+  @override
+  _ProductCardWidgetState createState() => _ProductCardWidgetState();
+}
+
+class _ProductCardWidgetState extends State<ProductCardWidget>
+    with SingleTickerProviderStateMixin {
+  AnimationController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = AnimationController(
+      duration: const Duration(seconds: 3),
+      vsync: this,
+    );
+    if (widget.animate) {
+      controller.forward(from: 0.8);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
-        color: product.color,
+        color: widget.product.color,
       ),
       padding: EdgeInsets.all(8),
       child: Stack(
@@ -37,18 +61,18 @@ class ProductCardWidget extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
-                  product.brand,
+                  widget.product.brand,
                   style: TextStyle(color: Colors.white),
                 ),
                 Text(
-                  product.title,
+                  widget.product.title,
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 Text(
-                  '\$${product.price.toStringAsFixed(2)}',
+                  '\$${widget.product.price.toStringAsFixed(2)}',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 12,
@@ -71,14 +95,18 @@ class ProductCardWidget extends StatelessWidget {
             ),
           ),
           Positioned.fill(
-            bottom: 10,
-            right: -20,
-            child: Transform.rotate(
-              child: Image.asset(
-                product.image,
-                fit: BoxFit.fitHeight,
+            bottom: 0,
+            right: -40,
+            child: AnimatedBuilder(
+              animation: controller,
+              builder: (BuildContext context, Widget _widget) =>
+                  Transform.rotate(
+                child: Image.asset(
+                  widget.product.image,
+                  fit: BoxFit.fitHeight,
+                ),
+                angle: controller.value * 5.8,
               ),
-              angle: -0.4,
             ),
           ),
           Positioned.fill(
