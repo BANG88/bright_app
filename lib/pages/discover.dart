@@ -137,10 +137,10 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Wrap(
                         spacing: 16,
-                        runSpacing: 10,
+                        runSpacing: 16,
                         children: products
                             .map(
                               (product) => ProductNewWidget(

@@ -14,7 +14,6 @@ class ProductNewWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: 160,
-      height: 180,
       padding: EdgeInsets.all(8),
       decoration: BoxDecoration(
         color: Colors.white,
@@ -52,10 +51,28 @@ class ProductNewWidget extends StatelessWidget {
             ),
             quarterTurns: 3,
           ),
-          Image.asset(
-            product.image,
-            fit: BoxFit.contain,
-            width: 140,
+          Column(
+            children: <Widget>[
+              Center(
+                child: Image.asset(
+                  product.image,
+                  fit: BoxFit.fitHeight,
+                  height: 120,
+                ),
+              ),
+              Text(
+                product.title,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(
+                  top: 8.0,
+                  bottom: 16,
+                ),
+                child: Text(
+                  '\$${product.price}',
+                ),
+              ),
+            ],
           )
         ],
       ),
