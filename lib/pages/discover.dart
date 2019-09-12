@@ -1,4 +1,5 @@
 import 'package:bright_app/widgets/product_card.dart';
+import 'package:bright_app/widgets/product_new.dart';
 import 'package:bright_app/widgets/product_view.dart';
 /**
  *
@@ -116,27 +117,39 @@ class _DiscoverPageState extends State<DiscoverPage> {
                     ProductViewWidget(),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
-                      child: Column(children: <Widget>[
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: <Widget>[
-                            Text(
-                              'More',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w700,
-                              ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            'More',
+                            style: TextStyle(
+                              fontWeight: FontWeight.w700,
                             ),
-                            IconButton(
-                              icon: Icon(
-                                Icons.trending_flat,
-                                size: 18,
+                          ),
+                          IconButton(
+                            icon: Icon(
+                              Icons.trending_flat,
+                              size: 18,
+                            ),
+                            onPressed: () {},
+                          )
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Wrap(
+                        spacing: 16,
+                        runSpacing: 10,
+                        children: products
+                            .map(
+                              (product) => ProductNewWidget(
+                                product: product,
                               ),
-                              onPressed: () {},
                             )
-                          ],
-                        ),
-                      ]),
-                    )
+                            .toList(),
+                      ),
+                    ),
                   ],
                 ),
               )
