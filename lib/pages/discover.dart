@@ -141,7 +141,7 @@ class _DiscoverPageState extends State<DiscoverPage> {
                       child: Wrap(
                         spacing: 16,
                         runSpacing: 16,
-                        children: products
+                        children: products.reversed
                             .map(
                               (product) => ProductNewWidget(
                                 product: product,
